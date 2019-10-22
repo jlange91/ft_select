@@ -6,7 +6,7 @@
 #    By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:18:13 by thdelmas          #+#    #+#              #
-#    Updated: 2019/10/22 17:15:43 by thdelmas         ###   ########.fr        #
+#    Updated: 2019/10/22 18:05:55 by thdelmas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ LFLAGS = -ltermcap \
 
 .PHONY: all clean fclean re
 
-all: $(FT) $(NAME) bye_msg
+all: $(FT) $(NAME)
 
 ### Lib compil ###
 $(FT):
