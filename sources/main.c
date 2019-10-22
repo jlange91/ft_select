@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:32:45 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/22 18:02:25 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/22 18:11:16 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	main()
 		if (read(STDIN_FILENO, buff, nb_bytes) != nb_bytes)
 			stop = 1;
 		if (!ft_strcmp(ARROW_UP, buff))
-			ft_putendl("HAUT");
+			ft_putstr(ARROW_UP);
 		if (!ft_strcmp(ARROW_DOWN, buff))
-			ft_putendl("BAS");
+			ft_putstr(ARROW_DOWN);
 		if (!ft_strcmp(ARROW_LEFT, buff))
-			ft_putendl("GAUCHE");
+			ft_putstr(ARROW_LEFT);
 		if (!ft_strcmp(ARROW_RIGHT, buff))
-			ft_putendl("DROITE");
+			ft_putstr(ARROW_RIGHT);
 		ft_strdel(&buff);
 	}
 	tcsetattr(STDIN_FILENO, TCSANOW, &reset);

@@ -6,7 +6,7 @@
 #    By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:18:13 by thdelmas          #+#    #+#              #
-#    Updated: 2019/10/22 18:05:55 by thdelmas         ###   ########.fr        #
+#    Updated: 2019/10/22 18:08:21 by thdelmas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ LFLAGS = -ltermcap \
 
 .PHONY: all clean fclean re
 
-all: $(FT) $(NAME)
+all: $(NAME)
 
 ### Lib compil ###
 $(FT):
@@ -89,7 +89,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC) Makefile
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 ### Link ###
-$(NAME): $(OBJ_DIR) $(OBJ) $(INC) Makefile $(FT_DIR)/libft.a
+$(NAME): $(FT) $(OBJ_DIR) $(OBJ) $(INC) Makefile $(FT_DIR)/libft.a
 	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
 
 ### Clean ###
@@ -109,3 +109,5 @@ fclean: $(FT)_fclean
 
 re: fclean all
 
+run: $(NAME)
+	./$(NAME)
