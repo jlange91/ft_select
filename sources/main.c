@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:32:45 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/22 20:18:26 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:40:21 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,18 @@ void	ft_set_signals()
 		i++;
 	}
 }
+void	print_param(int ac, char **av)
+{
+	int	i;
 
-int	main()
+	i = 0;
+	while (++i < ac)
+	{
+		ft_putendl(av[i]);
+	}
+}
+
+int	main(int ac, char **av)
 {
 	struct 	termios term;
 	int	nb_bytes;
@@ -68,6 +78,7 @@ int	main()
 	tgetent(NULL, "vt100");
 	tc = tgetstr("cl", NULL);
 	tputs(tc, 1, (int (*)(int))ft_putchar);
+	print_param(ac, av);
 	while (!stop)
 	{
 		ioctl(STDIN_FILENO, FIONREAD, &nb_bytes);
