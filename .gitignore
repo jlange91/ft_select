@@ -29,7 +29,7 @@
 *.dylib
 
 # Executables
-minishell
+ft_select
 *.exe
 *.out
 *.app
