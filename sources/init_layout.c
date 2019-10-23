@@ -14,17 +14,18 @@
 
 #include <unistd.h>
 
-void	init_layout(int ac, char **av, t_layout *lay)
+int		init_layout(int ac, char **av, t_layout *l)
 {
-	lay->nb_col = 0;
-	lay->nb_raw = 0;
-	lay->col_len = 0;
-	lay->pos[0] = 0;
-	lay->pos[1] = 0;
-	lay->nb_args = ac - 1;
-	if ((!lay->params = init_params(ac, av)))
+	l->nb_col = 0;
+	l->nb_raw = 0;
+	l->col_len = 0;
+	l->pos[0] = 0;
+	l->pos[1] = 0;
+	l->nb_args = ac - 1;
+	if (!(l->params = init_params(ac, av)))
 	{
 		ft_putendl_fd("ft_select: init_params: malloc_error", STDERR_FILENO);
-		exit(1);
+		return(1);
 	}
+	return (0);
 }

@@ -6,10 +6,9 @@ t_param   *init_params(int ac, char **av)
   int     i;
 
   i = 0;
-  if (!(ret = (t_param*)malloc(sizeof(t_param) * ac)))
+  if (!(ret = (t_param*)malloc(sizeof(t_param) * (ac - 1))))
     return (ret);
-  ret[ac] = NULL;
-  while (ret[i])
+  while (i < ac - 1)
   {
     ret[i].str = av[i + 1];
     ret[i].len = ft_strlen(av[i + 1]);

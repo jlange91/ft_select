@@ -54,10 +54,11 @@ typedef struct    s_layout
   int     pos[2];
 }		t_layout;
 
-int     init_term(t_term *t);
-t_term  *singleton_term(t_term *t);
-int      read_stdin(t_term *t);
+int       init_term(t_term *t);
+t_term    *singleton_term(t_term *t);
+int       read_stdin(t_term *t);
 t_param   *init_params(int ac, char **av);
-
+int		    init_layout(int ac, char **av, t_layout *l);
+void      calc_layout(t_term *t, t_layout *l);
 
 #endif

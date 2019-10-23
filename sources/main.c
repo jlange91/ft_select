@@ -43,13 +43,15 @@ void	ft_set_signals()
 	}
 }
 
-int	main()
+int	main(int ac, char **av)
 {
-	t_term t;
-	char	*tc;
+	t_term 		t;
+	t_layout 	l;
+	char			*tc;
 
-	if (init_term(&t))
+	if (init_term(&t) || init_layout(ac, av, &l))
 		exit(1);
+	calc_layout(&t, &l);
 	singleton_term(&t);
 	ft_set_signals();
 	tc = tgetstr("cl", NULL);
