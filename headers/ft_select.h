@@ -41,7 +41,17 @@ typedef struct   s_param
   int   len;
   int   x;
   int   y;
+  char  selected;
 }                 t_param;
+
+typedef struct    s_layout
+{
+  int     nb_col;
+  int     nb_raw;
+  int     col_len;
+  t_param *param
+  int     pos[2];
+}
 
 int     init_term(t_term *t);
 t_term  *singleton_term(t_term *t);
