@@ -49,12 +49,14 @@ typedef struct    s_layout
   int     nb_col;
   int     nb_raw;
   int     col_len;
-  t_param *param;
+  t_param *params;
   int     pos[2];
 }		t_layout;
 
 int     init_term(t_term *t);
 t_term  *singleton_term(t_term *t);
 int      read_stdin(t_term *t);
+t_param   *init_params(int ac, char **av);
+
 
 #endif
