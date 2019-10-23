@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 15:15:14 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/23 15:43:48 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:59:11 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_args(t_layout *lay, t_param *params, size_t s)
 			tputs(tc, STDIN_FILENO, ft_putchar);
 			//
 		}
-		if (lay->x == i % lay->nb_raw && lay->y == i / lay->nb_raw)
+		if (lay->x == (i + 1) % lay->nb_raw && lay->y == (i + 1) / lay->nb_raw)
 		{
 			//UNDERLINED MODE
 			tc = tgetstr("us");

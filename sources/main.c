@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:32:45 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/23 15:43:51 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:01:22 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void destructor(void)
 	t_term *t;
 
 	t = singleton_term(NULL);
-	ft_putendl("Reset terminal");
 	if (t)
+	{
+	ft_putendl("Reset terminal");
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
+	}
 }
 
 void	ft_handle_signals(int sig)
@@ -49,6 +51,8 @@ int	main(int ac, char **av)
 	t_layout 	l;
 	char			*tc;
 
+	if (ac <= 1)
+		return (0);
 	if (init_term(&t) || init_layout(ac, av, &l))
 		exit(1);
 	calc_layout(&t, &l);
@@ -57,6 +61,5 @@ int	main(int ac, char **av)
 	tc = tgetstr("cl", NULL);
 	tputs(tc, 1, (int (*)(int))ft_putchar);
 	read_stdin(&t);
-
 	return (0);
 }
