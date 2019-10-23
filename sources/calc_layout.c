@@ -35,8 +35,8 @@ static void calc_layout_x_y(t_layout *l) {
   i = 0;
   while (i < l->nb_args)
   {
-    l->params[i].l_x = (i % l->nb_col) + 1;
-    l->params[i].l_y = (i / l->nb_col) + 1;
+    l->params[i].l_x = (i % l->nb_col);
+    l->params[i].l_y = (i / l->nb_col);
     i++;
   }
 }
@@ -48,7 +48,7 @@ static void calc_term_x_y(t_layout *l) {
   while (i < l->nb_args)
   {
     //first calc for size str and second for space between
-    l->params[i].t_x = ((l->params[i].l_x - 1) * l->col_len) + ((l->params[i].l_x - 1) * 1);
+    l->params[i].t_x = ((l->params[i].l_x) * l->col_len) + ((l->params[i].l_x) * 1);
     l->params[i].t_y = l->params[i].l_y;
     i++;
   }
