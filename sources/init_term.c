@@ -28,11 +28,26 @@ static int	init_attr(t_term *t)
   return (0);
 }
 
+static int init_size_term(t_term *t)
+{
+  struct winsize w;
+
+  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w)
+  {
+    ft_putstr_fd("Could not get size of term.", 2)
+    return (1);
+  }
+  t->length = w.ws_col;
+  t->height = w.ws_row;
+  return (0);
+}
+
 int init_term(t_term *t)
 {
   int ret;
   char *(errors[5]);
 
+  init_size_term(t);
   errors[0] = "TERM must be set (see 'env').\n";
   errors[1] = "Could not access to the termcap database.\n";
   errors[2] = "Terminal type is not defined in termcap database (or have too few informations).\n";
