@@ -10,22 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
-#include <term.h>
-#include <unistd.h>
-#include <sys/ioctl.h>
-
-#include "libft.h"
 #include "ft_select.h"
-
-struct 	termios reset;
 
 void destructor(void) __attribute__((destructor));
 
 void destructor(void)
 {
+	t_term *t;
+
+	t = singleton_term(NULL);
 	ft_putendl("Reset terminal");
-	tcsetattr(STDIN_FILENO, TCSADRAIN, &reset);
+	if (t)
+		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
 }
 
 void	ft_handle_signals(int sig)
@@ -49,25 +45,29 @@ void	ft_set_signals()
 
 int	main()
 {
-	struct 	termios term;
+	t_term t;
 	int	nb_bytes;
 	char	*buff;
 	char	stop = 0;
 	char	*tc;
 
 	nb_bytes = 0;
-	tcgetattr(STDIN_FILENO, &reset);
-	term = reset;
-	term.c_lflag &= ~(ECHO | ICANON);
-	term.c_cc[VMIN] = 1;
-	term.c_cc[VTIME] = 0;
-	tcsetattr(STDIN_FILENO, TCSANOW, &term);
-	
+	if (init_term(&t))
+		exit(1);
+	singleton_term(&t);
 	ft_set_signals();
 
-	tgetent(NULL, "vt100");
-	tc = tgetstr("cl", NULL);
-	tputs(tc, 1, (int (*)(int))ft_putchar);
+		tc = tgetstr("cl", NULL);
+		tputs(tc, 1, (int (*)(int))ft_putchar);
+
+	// tc = tgetstr("co", NULL);
+	// tputs(tc, 1, (int (*)(int))ft_putchar);
+	//
+	// tc = tgetstr("li", NULL);
+	// tputs(tc, 1, (int (*)(int))ft_putchar);
+
+
+
 	while (!stop)
 	{
 		ioctl(STDIN_FILENO, FIONREAD, &nb_bytes);
