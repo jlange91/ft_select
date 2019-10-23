@@ -6,13 +6,13 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 15:15:14 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/23 15:20:38 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:43:48 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	print_args(t_param *params, size_t s)
+void	print_args(t_layout *lay, t_param *params, size_t s)
 {
 	size_t	i;
 	char	*tc;
@@ -27,6 +27,27 @@ void	print_args(t_param *params, size_t s)
 	{
 		move = tgoto(tcm, params[i].x, params[i].y);
 		tputs(move, STDIN_FILENO, ft_putchar);
+		if (params[i].selected)
+		{
+			//REVERSE VIDEO MODE
+			tc = tgetstr("mr");
+			tputs(tc, STDIN_FILENO, ft_putchar);
+			//
+		}
+		if (lay->x == i % lay->nb_raw && lay->y == i / lay->nb_raw)
+		{
+			//UNDERLINED MODE
+			tc = tgetstr("us");
+			tputs(tc, STDIN_FILENO, ft_putchar);
+			//
+		}
+		ft_putstr_fd(params[i].str, STDIN_FILENO);
+		//EXIT STYLES MODE
+		tc = tgetstr("me");
+		tputs(tc, STDIN_FILENO, ft_putchar);
+		tc = tgetstr("ue");
+		tputs(tc, STDIN_FILENO, ft_putchar);
+		//
 		i++;
 	}
 }
