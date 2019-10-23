@@ -32,9 +32,9 @@ static int init_size_term(t_term *t)
 {
   struct winsize w;
 
-  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w)
+  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w))
   {
-    ft_putstr_fd("Could not get size of term.", 2)
+    ft_putstr_fd("Could not get size of term.", 2);
     return (1);
   }
   t->length = w.ws_col;

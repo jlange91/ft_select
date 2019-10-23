@@ -45,5 +45,6 @@ typedef struct   s_param
 
 int     init_term(t_term *t);
 t_term  *singleton_term(t_term *t);
+int      read_stdin(t_term *t);
 
 #endif
