@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:58:33 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/22 18:03:56 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/23 14:46:02 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ typedef struct    s_layout
   int     nb_col;
   int     nb_raw;
   int     col_len;
-  t_param *param
+  t_param *param;
   int     pos[2];
-}
+}		t_layout;
 
 int     init_term(t_term *t);
 t_term  *singleton_term(t_term *t);
