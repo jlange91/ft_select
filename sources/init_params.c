@@ -12,8 +12,10 @@ t_param   *init_params(int ac, char **av)
   {
     ret[i].str = av[i + 1];
     ret[i].len = ft_strlen(av[i + 1]);
-    ret[i].x = 0;
-    ret[i].y = 0;
+    ret[i].l_x = 0;
+    ret[i].l_y = 0;
+    ret[i].t_x = 0;
+    ret[i].t_y = 0;
     ret[i].selected = 0;
     i++;
   }

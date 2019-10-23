@@ -39,8 +39,10 @@ typedef struct   s_param
 {
   char  *str;
   int   len;
-  int   x;
-  int   y;
+  int   t_x;
+  int   t_y;
+  int   l_x;
+  int   l_y;
   char  selected;
 }                 t_param;
 
