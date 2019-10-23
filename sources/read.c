@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-int   read_stdin(t_term *t)
+int   read_stdin(t_term *t, t_layout *l)
 {
   int	  nb_bytes;
   char	*buff;
@@ -9,6 +9,7 @@ int   read_stdin(t_term *t)
   stop = 0;
   nb_bytes = 0;
   t = (t_term*)t;
+  print_args(l);
 	while (!stop)
 	{
 		ioctl(STDIN_FILENO, FIONREAD, &nb_bytes);
@@ -19,13 +20,13 @@ int   read_stdin(t_term *t)
 		if (read(STDIN_FILENO, buff, nb_bytes) != nb_bytes)
 			stop = 1;
 		if (!ft_strcmp(ARROW_UP, buff))
-			ft_putstr(ARROW_UP);
+      arrow_up_action(l);
 		else if (!ft_strcmp(ARROW_DOWN, buff))
-			ft_putstr(ARROW_DOWN);
+      arrow_down_action(l);
 		else if (!ft_strcmp(ARROW_LEFT, buff))
-			ft_putstr(ARROW_LEFT);
+      arrow_left_action(l);
 		else if (!ft_strcmp(ARROW_RIGHT, buff))
-			ft_putstr(ARROW_RIGHT);
+      arrow_right_action(l);
 		else
 			ft_putstr(buff);
 		ft_strdel(&buff);

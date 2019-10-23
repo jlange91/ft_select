@@ -21,14 +21,15 @@ void destructor(void)
 	t = singleton_term(NULL);
 	if (t)
 	{
-	ft_putendl("Reset terminal");
+		ft_putendl("Reset terminal");
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
 	}
 }
 
 void	ft_handle_signals(int sig)
 {
-	ft_putnbr(sig);
+	// ft_putnbr(sig);
+	sig = (int)sig;
 	ft_putchar('\n');
 	exit(1);
 }
@@ -49,7 +50,6 @@ int	main(int ac, char **av)
 {
 	t_term 		t;
 	t_layout 	l;
-	char			*tc;
 
 	if (ac <= 1)
 		return (0);
@@ -58,8 +58,6 @@ int	main(int ac, char **av)
 	calc_layout(&t, &l);
 	singleton_term(&t);
 	ft_set_signals();
-	tc = tgetstr("cl", NULL);
-	tputs(tc, 1, (int (*)(int))ft_putchar);
-	read_stdin(&t);
+	read_stdin(&t, &l);
 	return (0);
 }

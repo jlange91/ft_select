@@ -19,8 +19,8 @@ int		init_layout(int ac, char **av, t_layout *l)
 	l->nb_col = 0;
 	l->nb_raw = 0;
 	l->col_len = 0;
-	l->pos[0] = 0;
-	l->pos[1] = 0;
+	l->pos[0] = 1;
+	l->pos[1] = 1;
 	l->nb_args = ac - 1;
 	if (!(l->params = init_params(ac, av)))
 	{

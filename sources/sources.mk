@@ -5,6 +5,8 @@ C_FILES= \
 	read.c \
 	init_layout.c \
 	init_params.c \
-	calc_layout.c
+	calc_layout.c \
+	print_args.c \
+	arrow_actions.c
 
 C_FILES += $(foreach SUB_DIR,$(SUB_DIRS),$(addprefix $(SUB_DIR)/,$(C_FILES_$(SUB_DIR))))

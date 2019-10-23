@@ -58,9 +58,14 @@ typedef struct    s_layout
 
 int       init_term(t_term *t);
 t_term    *singleton_term(t_term *t);
-int       read_stdin(t_term *t);
+int       read_stdin(t_term *t, t_layout *l);
 t_param   *init_params(int ac, char **av);
 int		    init_layout(int ac, char **av, t_layout *l);
 void      calc_layout(t_term *t, t_layout *l);
+void	    print_args(t_layout *lay);
+void      arrow_up_action(t_layout *l);
+void      arrow_down_action(t_layout *l);
+void      arrow_left_action(t_layout *l);
+void      arrow_right_action(t_layout *l);
 
 #endif
