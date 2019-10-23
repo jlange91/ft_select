@@ -7,6 +7,8 @@ C_FILES= \
 	init_params.c \
 	calc_layout.c \
 	print_args.c \
-	arrow_actions.c
+	arrow_actions.c \
+	actions.c \
+	tools.c
 
 C_FILES += $(foreach SUB_DIR,$(SUB_DIRS),$(addprefix $(SUB_DIR)/,$(C_FILES_$(SUB_DIR))))

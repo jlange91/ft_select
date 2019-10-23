@@ -21,6 +21,7 @@
 
 #include <stdio.h>
 
+# define SPACE " "
 # define ARROW_UP "\e[A"
 # define ARROW_DOWN "\e[B"
 # define ARROW_RIGHT "\e[C"
@@ -67,5 +68,8 @@ void      arrow_up_action(t_layout *l);
 void      arrow_down_action(t_layout *l);
 void      arrow_left_action(t_layout *l);
 void      arrow_right_action(t_layout *l);
+void      space_action(t_layout *l);
+int       layout_case_exist(t_layout *l, int x, int y);
+
 
 #endif

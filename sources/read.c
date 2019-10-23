@@ -27,8 +27,11 @@ int   read_stdin(t_term *t, t_layout *l)
       arrow_left_action(l);
 		else if (!ft_strcmp(ARROW_RIGHT, buff))
       arrow_right_action(l);
-		else
-			ft_putstr(buff);
+    else if (!ft_strcmp(SPACE, buff))
+      space_action(l);
+
+		// else
+		// 	ft_putstr(buff);
 		ft_strdel(&buff);
 	}
   return (0);
