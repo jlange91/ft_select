@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:58:33 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/23 14:46:02 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:09:48 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int     init_term(t_term *t);
 t_term  *singleton_term(t_term *t);
 int      read_stdin(t_term *t);
 t_param   *init_params(int ac, char **av);
-
+void		init_layout(int ac, char **av, t_layout *lay);
 
 #endif

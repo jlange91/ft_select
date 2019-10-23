@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:32:45 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/22 20:18:26 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:10:22 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ void	ft_set_signals()
 	}
 }
 
-int	main()
+int	main(int ac, char **av)
 {
-	t_term t;
-	char	*tc;
+	t_term 		t;
+	char		*tc;
+	t_layout	layout;
+
 
 	if (init_term(&t))
 		exit(1);
+	init_layout(ac, av, &layout);
 	singleton_term(&t);
 	ft_set_signals();
 	tc = tgetstr("cl", NULL);
