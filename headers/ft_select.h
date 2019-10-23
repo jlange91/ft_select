@@ -46,6 +46,7 @@ typedef struct   s_param
 
 typedef struct    s_layout
 {
+  int     nb_args;
   int     nb_col;
   int     nb_raw;
   int     col_len;
