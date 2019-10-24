@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-static int init_termcaps(t_term *t)
+static int init_getent(t_term *t)
 {
 	int ret;
 
@@ -29,7 +29,7 @@ static int	init_attr(t_term *t)
 	return (0);
 }
 
-static int init_size_term(t_term *t)
+static int get_size_term(t_term *t)
 {
 	struct winsize w;
 
@@ -48,11 +48,10 @@ int init_term(t_term *t)
 	int ret;
 	char *(errors[5]);
 
-	init_size_term(t);
 	errors[0] = "TERM must be set (see 'env').\n";
 	errors[1] = "Could not access to the termcap database.\n";
 	errors[2] = "Terminal type is not defined in termcap database (or have too few informations).\n";
-	ret = init_termcaps(t);
+	ret = init_getent(t);
 	if (ret)
 	{
 		ft_putstr_fd(errors[ret - 1], 2);
@@ -63,5 +62,17 @@ int init_term(t_term *t)
 	ret = init_attr(t);
 	if (ret)
 		ft_putstr_fd(errors[ret - 1], 2);
+	get_size_term(t);
+	tputs(tgetstr("ti", NULL), 1, (int (*)(int))ft_putchar);
+	tputs(tgetstr("vi", NULL), 1, (int (*)(int))ft_putchar);
 	return (ret);
+}
+
+int	term_off(t_term *t)
+{
+	if (t)
+		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
+	tputs(tgetstr("te", NULL), 1, (int (*)(int))ft_putchar);
+	tputs(tgetstr("ve", NULL), 1, (int (*)(int))ft_putchar);
+	return (0);
 }

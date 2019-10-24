@@ -16,34 +16,7 @@ void destructor(void) __attribute__((destructor));
 
 void destructor(void)
 {
-	t_term *t;
-
-	t = singleton_term(NULL);
-	if (t)
-	{
-		ft_putendl("Reset terminal");
-		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
-	}
-}
-
-void	ft_handle_signals(int sig)
-{
-	// ft_putnbr(sig);
-	sig = (int)sig;
-	ft_putchar('\n');
-	exit(1);
-}
-
-void	ft_set_signals()
-{
-	int i;
-
-	i = 0;
-	while (i <= 32)
-	{
-		signal(i, ft_handle_signals);
-		i++;
-	}
+	term_off(singleton_term(NULL));
 }
 
 int	main(int ac, char **av)
@@ -57,6 +30,7 @@ int	main(int ac, char **av)
 		exit(1);
 	calc_layout(&t, &l);
 	singleton_term(&t);
+	singleton_layout(&l);
 	ft_set_signals();
 	read_stdin(&t, &l);
 	return (0);

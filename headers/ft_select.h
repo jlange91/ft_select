@@ -59,6 +59,7 @@ typedef struct    s_layout
 
 int       init_term(t_term *t);
 t_term    *singleton_term(t_term *t);
+t_layout  *singleton_layout(t_layout *l);
 int       read_stdin(t_term *t, t_layout *l);
 t_param   *init_params(int ac, char **av);
 int		    init_layout(int ac, char **av, t_layout *l);
@@ -70,6 +71,9 @@ void      arrow_left_action(t_layout *l);
 void      arrow_right_action(t_layout *l);
 void      space_action(t_layout *l);
 int       layout_case_exist(t_layout *l, int x, int y);
-
+void	    ft_handle_signals(int sig);
+int	      term_off(t_term *t);
+void	    handle_signals(int sig);
+void	    ft_set_signals();
 
 #endif

@@ -22,7 +22,6 @@ void	print_args(t_layout *lay)
 	i = 0;
 	tc = tgetstr("cl", NULL);
 	tputs(tc, 1, (int (*)(int))ft_putchar);
-	tc = tgetstr("cl", NULL);
 	tcm = tgetstr("cm", NULL);
 	tputs(tc, STDIN_FILENO, (int (*)(int))ft_putchar);
 	while (i < lay->nb_args)
