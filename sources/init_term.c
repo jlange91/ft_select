@@ -6,7 +6,7 @@ static int init_getent(t_term *t)
 
 	t->type = getenv("TERM");
 	if (t->type == NULL)
-		ret = tgetent(NULL, "vt100");
+		return (1);
 	else
 		ret = tgetent(NULL, t->type);
 	if (ret == -1)
