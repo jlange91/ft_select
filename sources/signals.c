@@ -7,25 +7,33 @@ void	ft_set_signals()
 	i = 0;
 	while (i <= 32)
 	{
-		if (i != SIGTSTP)
-			signal(i, handle_signals);
+		signal(i, handle_signals);
 		i++;
 	}
 }
 
 void	handle_signals(int sig)
 {
-	// if (sig == SIGTSTP)
-	// {
-	// 	tputs(tgetstr("ve", NULL), 1, (int (*)(int))ft_putchar);
-	// }
-	if (sig == SIGCONT)
+	t_term *t;
+	t_layout *l;
+
+	t = singleton_term(NULL);
+	l = singleton_layout(NULL);
+	if (sig == SIGTSTP)
+	{
+		term_off(t);
+		signal(SIGTSTP, SIG_DFL);
+		ioctl(0, TIOCSTI, (char[2]){t->old.c_cc[VSUSP], 0});
+	}
+	else if (sig == SIGCONT)
 	{
 		// print_args(singleton_layout(NULL));
 		// signal(SIGTSTP, handle_signals);
-		ft_set_signals();
-		init_term(singleton_term(NULL));
-		read_stdin(singleton_term(NULL), singleton_layout(NULL));
+		// ft_set_signals();
+		signal(SIGTSTP, handle_signals);
+		signal(SIGCONT, handle_signals);
+		init_term(t);
+		read_stdin(t, l);
 		return ;
 	}
 	else
