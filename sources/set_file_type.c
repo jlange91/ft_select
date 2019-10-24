@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_file_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 17:32:45 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/24 14:34:16 by thdelmas         ###   ########.fr       */
+/*   Created: 2019/10/24 15:59:03 by thdelmas          #+#    #+#             */
+/*   Updated: 2019/10/24 17:41:07 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void destructor(void) __attribute__((destructor));
-
-void destructor(void)
+static void	say_my_type(t_param *p)
 {
-	ft_putendl("yolo");
-	term_off(singleton_term(NULL));
+	struct stat s;
+
+	if (stat(p->str, s))
+		p->type = 0;
+	else
+		p->type = s.st_mode;
 }
 
-int	main(int ac, char **av)
+void	set_file_type(t_layout *lay)
 {
-	t_term 		t;
-	t_layout 	l;
+	size_t i;
 
-	if (ac <= 1)
-		return (0);
-
-	if (init_term(&t) || init_layout(ac, &l) || init_params(ac, av, &l))
-		exit(1);
-	calc_layout(&t, &l);
-	singleton_term(&t);
-	singleton_layout(&l);
-	ft_set_signals();
-	read_stdin(&t, &l);
-	return (0);
+	i = 0;
+	while (i < lay->nb_args)
+	{
+		say_my_type(lay->params[i]);
+		i++;
+	}
 }

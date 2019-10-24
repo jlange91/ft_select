@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:58:33 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/23 15:09:48 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:11:44 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,35 +56,37 @@
 
 typedef struct  s_term
 {
-  char            *type;
-  struct termios  old;
-  struct termios  new;
-  int             length;
-  int             height;
+	char            *type;
+	struct termios  old;
+	struct termios  new;
+	int             length;
+	int             height;
 }               t_term;
 
 typedef struct   s_param
 {
-  char  *str;
-  int   len;
-  int   t_x;
-  int   t_y;
-  int   l_x;
-  int   l_y;
-  char  selected;
+	char	*str;
+	int	len;
+	int	t_x;
+	int	t_y;
+	int	l_x;
+	int	l_y;
+	char	selected;
+	mode_t	type;
 }                 t_param;
 
 typedef struct    s_layout
 {
-  int     nb_args;
-  int     nb_col;
-  int     nb_raw;
-  int     col_len;
-  t_param *params;
-  int     pos[2];
+	int     nb_args;
+	int     nb_col;
+	int     nb_raw;
+	int     col_len;
+	t_param *params;
+	int     pos[2];
 }		t_layout;
 
 int       init_term(t_term *t);
+int get_size_term(t_term *t);
 t_term    *singleton_term(t_term *t);
 t_layout  *singleton_layout(t_layout *l);
 int       read_stdin(t_term *t, t_layout *l);
@@ -92,11 +94,11 @@ int       init_params(int ac, char **av, t_layout *l);
 int		    init_layout(int ac, t_layout *l);
 void      calc_layout(t_term *t, t_layout *l);
 void	    print_args(t_layout *lay);
-void      arrow_up_action(t_layout *l);
-void      arrow_down_action(t_layout *l);
-void      arrow_left_action(t_layout *l);
-void      arrow_right_action(t_layout *l);
-void      space_action(t_layout *l);
+void	  arrow_up_action(t_layout *l);
+void	  arrow_down_action(t_layout *l);
+void	  arrow_left_action(t_layout *l);
+void	  arrow_right_action(t_layout *l);
+void	  space_action(t_layout *l);
 int       layout_case_exist(t_layout *l, int x, int y);
 void	    ft_handle_signals(int sig);
 int	      term_off(t_term *t);

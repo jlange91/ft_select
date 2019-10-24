@@ -6,7 +6,7 @@
 /*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 15:15:14 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/23 15:59:11 by thdelmas         ###   ########.fr       */
+/*   Updated: 2019/10/24 17:47:01 by thdelmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ void	print_args(t_layout *lay)
 			tputs(tc, STDIN_FILENO, (int (*)(int))ft_putchar);
 			//
 		}
+		set_color(params[i].type);
 		ft_putstr_fd(lay->params[i].str, STDIN_FILENO);
 		//EXIT STYLES MODE
+		reset_color();
 		tc = tgetstr("me", NULL);
 		tputs(tc, STDIN_FILENO, (int (*)(int))ft_putchar);
 		tc = tgetstr("ue", NULL);
