@@ -29,7 +29,7 @@ static int	init_attr(t_term *t)
 	return (0);
 }
 
-static int get_size_term(t_term *t)
+int get_size_term(t_term *t)
 {
 	struct winsize w;
 
