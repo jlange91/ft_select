@@ -12,26 +12,7 @@
 
 #include "ft_select.h"
 
-void                        ft_background_color(char c)
-{
-    if (c == 'a' || c == 'A')
-        ft_putstr(BACK_BLACK);
-    else if (c == 'b' || c == 'B')
-        ft_putstr(BACK_RED);
-    else if (c == 'c' || c == 'C')
-        ft_putstr(BACK_GREEN);
-    else if (c == 'd' || c == 'D')
-        ft_putstr(BACK_YELLOW);
-    else if (c == 'e' || c == 'E')
-        ft_putstr(BACK_BLUE);
-    else if (c == 'f' || c == 'F')
-        ft_putstr(BACK_MAGENTA);
-    else if (c == 'g' || c == 'G')
-        ft_putstr(BACK_CYAN);
-    else if (c == 'h' || c == 'H')
-        ft_putstr(BACK_GREY);
-}
-static inline void            ft_text_color2(char c)
+static inline void            set_text_color2(char c)
 {
     if (c == 'A')
         ft_putstr(D_GREY);
@@ -50,7 +31,7 @@ static inline void            ft_text_color2(char c)
     else if (c == 'H')
         ft_putstr(WHITE);
 }
-void                        ft_text_color(char c)
+void                        set_text_color(char c)
 {
     if (c == 'a')
         ft_putstr(BLACK);
@@ -69,51 +50,40 @@ void                        ft_text_color(char c)
     else if (c == 'h')
         ft_putstr(GREY);
     else
-        ft_text_color2(c);
+        set_text_color2(c);
 }
 
-void	set_colors(mode_t type)
+void	set_colors(char *colors, mode_t type)
 {
-	char *str;
 	size_t	i;
+	mode_t	mode;
 
-	i = 0;
-	str = getenv("LSCOLORS");
-	if ((type & S_IFMT) == S_IFBLK)
-		i = 10;
-	else if ((type & S_IFMT) == S_IFCHR)
-		i = 12;
-	else if ((type & S_IFMT) == S_IFDIR && (type & S_IFMT) == S_IWOTH)
-	{
-		if ((type & S_IFMT) == S_ISVTX)
-			i = 18;
-		else
-			i = 20;
-	}
-	else if ((type & S_IFMT) == S_IFDIR)
+	i = -1;
+	if (!colors)
+		return ;
+	mode = type & 0xF000;
+	if ((mode ^ S_IFDIR) == 0)
 		i = 0;
-	else if ((type & S_IFMT) == S_IFIFO)
-		i = 6;
-	else if ((type & S_IFMT) == S_IFLNK)
+	else if ((mode ^ S_IFLNK) == 0)
 		i = 2;
-	else if ((type & S_IFMT) == S_IXUSR)
-	{
-		if ((type & S_IFMT) == S_ISGID)
-			i = 16;
-		else if ((type & S_IFMT) == S_ISUID)
-			i = 14;
-		else
-			i = 8;
-	}
-	else if ((type & S_IFMT) == S_IFREG)
-		;
-	else if ((type & S_IFMT) == S_IFSOCK)
+	else if ((mode ^ S_IFSOCK) == 0)
 		i = 4;
-	if (i < ft_strlen(str))
-	{
-		ft_putnbr_fd(i, 2);
-		ft_putstr_fd("\n", 2);
-		ft_text_color(str[i]);
-		ft_background_color(str[i + 1]);
-	}
+	else if ((mode ^ S_IFIFO) == 0)
+		i = 6;
+	else if ((mode ^ S_IFBLK) == 0)
+		i = 10;
+	else if ((mode ^ S_IFCHR) == 0)
+		i = 12;
+	else if ((type & S_ISUID) && (type & 0111))
+		i = 14;
+	else if ((type & S_ISGID) && (type & 0111))
+		i = 16;
+	else if (type & 0111)
+		i = 8;
+	else if ((type & S_ISVTX) && (type & 02) && (mode ^ S_IFDIR) == 0)
+		i = 18;
+	else if ((type & 02) && (mode ^ S_IFDIR) == 0)
+		i = 20;
+	if (i >= 0 && i < ft_strlen(colors))
+		set_text_color(colors[i]);
 }

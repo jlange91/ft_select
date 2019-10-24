@@ -42,10 +42,11 @@ void	print_args(t_layout *lay)
 			tputs(tc, STDIN_FILENO, (int (*)(int))ft_putchar);
 			//
 		}
-		set_colors(lay->params[i].type);
+		set_colors(lay->colors, lay->params[i].type);
 		ft_putstr_fd(lay->params[i].str, STDIN_FILENO);
 		//EXIT STYLES MODE
-		ft_putstr_fd(RESET, STDIN_FILENO);
+		if (lay->colors)
+			ft_putstr_fd(RESET, STDIN_FILENO);
 		tc = tgetstr("me", NULL);
 		tputs(tc, STDIN_FILENO, (int (*)(int))ft_putchar);
 		tc = tgetstr("ue", NULL);

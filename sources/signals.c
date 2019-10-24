@@ -43,5 +43,5 @@ void	handle_signals(int sig)
 		return ;
 	}
 	else
-		exit(1);
+		exit(0);
 }

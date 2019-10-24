@@ -23,5 +23,6 @@ int		init_layout(int ac, t_layout *l)
 	l->pos[1] = 0;
 	l->nb_args = ac - 1;
 	l->params = NULL;
+	l->colors = getenv("LSCOLORS");
 	return (0);
 }

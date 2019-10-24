@@ -30,14 +30,6 @@
 # define DELETE 127
 # define ESC 27
 
-# define BACK_BLACK   "\x1b[40m"
-# define BACK_RED     "\x1b[41m"
-# define BACK_GREEN   "\x1b[42m"
-# define BACK_YELLOW  "\x1b[43m"
-# define BACK_BLUE    "\x1b[44m"
-# define BACK_MAGENTA "\x1b[45m"
-# define BACK_CYAN    "\x1b[46m"
-# define BACK_GREY    "\x1b[47m"
 # define BLACK        "\033[30m"
 # define RED          "\033[31m"
 # define GREEN        "\033[32m"
@@ -85,6 +77,7 @@ typedef struct    s_layout
 	int     col_len;
 	t_param *params;
 	int     pos[2];
+	char		*colors;
 }		t_layout;
 
 int       init_term(t_term *t);
@@ -111,6 +104,6 @@ void      enter_action(t_layout *l, t_term *t);
 t_param   *realloc_params(int nb_args, int ignored_index, t_param *old);
 int       delete_action(t_layout *l, t_term *t, int index);
 mode_t		get_type_file(char *str);
-void			set_colors(mode_t type);
+void			set_colors(char *colors, mode_t type);
 
 #endif

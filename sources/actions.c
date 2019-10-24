@@ -44,6 +44,12 @@ int   delete_action(t_layout *l, t_term *t, int index)
   l->params = new;
   l->nb_args -= 1;
   calc_layout(t, l);
+  while (!layout_case_exist(l, l->pos[0], l->pos[1]))
+  {
+    index = index - 1;
+    l->pos[0] = index % l->nb_col;
+    l->pos[1] = index / l->nb_col;
+  }
   print_args(l);
   return (0);
 }
