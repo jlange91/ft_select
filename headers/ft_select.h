@@ -27,6 +27,32 @@
 # define SPACE " "
 # define ENTER "\n"
 
+# define BACK_BLACK   "\x1b[40m"
+# define BACK_RED     "\x1b[41m"
+# define BACK_GREEN   "\x1b[42m"
+# define BACK_YELLOW  "\x1b[43m"
+# define BACK_BLUE    "\x1b[44m"
+# define BACK_MAGENTA "\x1b[45m"
+# define BACK_CYAN    "\x1b[46m"
+# define BACK_GREY    "\x1b[47m"
+# define BLACK        "\033[30m"
+# define RED          "\033[31m"
+# define GREEN        "\033[32m"
+# define BROWN        "\033[33m"
+# define BLUE         "\033[34m"
+# define MAGENTA      "\033[35m"
+# define CYAN         "\033[36m"
+# define GREY         "\033[37m"
+# define D_GREY       "\033[1m\033[30m"
+# define B_RED        "\033[1m\033[31m"
+# define B_GREEN      "\033[1m\033[32m"
+# define YELLOW       "\033[1m\033[33m"
+# define B_BLUE       "\033[1m\033[34m"
+# define B_MAGENTA    "\033[1m\033[35m"
+# define B_CYAN       "\033[1m\033[36m"
+# define WHITE        "\033[1m\033[37m"
+# define RESET        "\033[0m"
+
 typedef struct  s_term
 {
   char            *type;
