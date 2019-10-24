@@ -13,19 +13,19 @@
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
-#include "libft.h"
-#include <termios.h>
-#include <term.h>
-#include <unistd.h>
-#include <sys/ioctl.h>
+# include "libft.h"
+# include <termios.h>
+# include <term.h>
+# include <unistd.h>
+# include <sys/ioctl.h>
+# include <stdio.h>
 
-#include <stdio.h>
-
-# define SPACE " "
 # define ARROW_UP "\e[A"
 # define ARROW_DOWN "\e[B"
 # define ARROW_RIGHT "\e[C"
 # define ARROW_LEFT "\e[D"
+# define SPACE " "
+# define ENTER "\n"
 
 typedef struct  s_term
 {
@@ -76,5 +76,7 @@ int	      term_off(t_term *t);
 void	    handle_signals(int sig);
 void	    ft_set_signals();
 int       get_size_term(t_term *t);
+void      enter_action(t_layout *l, t_term *t);
+
 
 #endif

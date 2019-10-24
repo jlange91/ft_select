@@ -33,7 +33,8 @@ void	handle_signals(int sig)
 	}
 	else if (sig == SIGCONT)
 	{
-		init_term(t);
+		if (init_term(t))
+			exit(1);
 		signal(SIGTSTP, handle_signals);
 		signal(SIGCONT, handle_signals);
 		print_args(l);

@@ -35,7 +35,7 @@ int get_size_term(t_term *t)
 
   if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w))
   {
-    ft_putstr_fd("Could not get size of term.", 2);
+    ft_putstr_fd("Could not get size of term.\n", 2);
     return (1);
   }
   t->length = w.ws_col;
@@ -62,7 +62,8 @@ int init_term(t_term *t)
 	ret = init_attr(t);
 	if (ret)
 		ft_putstr_fd(errors[ret - 1], 2);
-	get_size_term(t);
+	if (get_size_term(t))
+		exit(1);
 	tputs(tgetstr("ti", NULL), 1, (int (*)(int))ft_putchar);
 	tputs(tgetstr("vi", NULL), 1, (int (*)(int))ft_putchar);
 	return (ret);
@@ -71,9 +72,10 @@ int init_term(t_term *t)
 int	term_off(t_term *t)
 {
 	if (t)
-		// ;
+	{
+		tputs(tgetstr("te", NULL), 1, (int (*)(int))ft_putchar);
+		tputs(tgetstr("ve", NULL), 1, (int (*)(int))ft_putchar);
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
-	tputs(tgetstr("te", NULL), 1, (int (*)(int))ft_putchar);
-	tputs(tgetstr("ve", NULL), 1, (int (*)(int))ft_putchar);
+	}
 	return (0);
 }
