@@ -16,7 +16,6 @@ void destructor(void) __attribute__((destructor));
 
 void destructor(void)
 {
-	ft_putendl("yolo");
 	term_off(singleton_term(NULL));
 }
 

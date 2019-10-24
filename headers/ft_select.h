@@ -27,6 +27,7 @@
 # define SPACE " "
 # define ENTER "\n"
 # define DELETE 127
+# define ESC 27
 
 # define BACK_BLACK   "\x1b[40m"
 # define BACK_RED     "\x1b[41m"
