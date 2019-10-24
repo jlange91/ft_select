@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <sys/ioctl.h>
 # include <stdio.h>
+# include <sys/stat.h>
 
 # define ARROW_UP "\e[A"
 # define ARROW_DOWN "\e[B"
@@ -109,5 +110,7 @@ int       get_size_term(t_term *t);
 void      enter_action(t_layout *l, t_term *t);
 t_param   *realloc_params(int nb_args, int ignored_index, t_param *old);
 int       delete_action(t_layout *l, t_term *t, int index);
+mode_t		get_type_file(char *str);
+void			set_colors(mode_t type);
 
 #endif

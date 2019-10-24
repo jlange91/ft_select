@@ -20,6 +20,7 @@ t_param   *realloc_params(int nb_args, int ignored_index, t_param *old)
       new[i].t_x = 0;
       new[i].t_y = 0;
       new[i].selected = (i < ignored_index) ? old[i].selected : old[i + 1].selected;
+      new[i].type = (i < ignored_index) ? old[i].type : old[i + 1].type;
       i++;
     }
     return (new);
@@ -44,6 +45,7 @@ int   init_params(int ac, char **av, t_layout *l)
     l->params[i].t_x = 0;
     l->params[i].t_y = 0;
     l->params[i].selected = 0;
+    l->params[i].type = get_type_file(l->params[i].str);
     i++;
   }
   return (0);
