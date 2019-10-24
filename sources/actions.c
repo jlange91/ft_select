@@ -33,3 +33,17 @@ void enter_action(t_layout *l, t_term *t)
   }
   exit(0);
 }
+
+int   delete_action(t_layout *l, t_term *t, int index)
+{
+  t_param *new;
+
+  new = realloc_params(l->nb_args, index, l->params);
+  if (l->params)
+    free(l->params);
+  l->params = new;
+  l->nb_args -= 1;
+  calc_layout(t, l);
+  print_args(l);
+  return (0);
+}

@@ -60,10 +60,4 @@ void calc_layout(t_term *t, t_layout *l) {
   calc_nb_col_raw(t, l);
   calc_layout_x_y(l);
   calc_term_x_y(l);
-
-    ft_putnbr_fd(l->nb_col, 2);
-  	ft_putstr_fd("\n", 2);
-    ft_putnbr_fd(l->nb_raw, 2);
-  	ft_putstr_fd("\n", 2);
-  	ft_putstr_fd("\n", 2);
 }

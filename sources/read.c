@@ -31,9 +31,10 @@ int   read_stdin(t_term *t, t_layout *l)
       space_action(l);
     else if (!ft_strcmp(ENTER, buff))
       enter_action(l, t);
-
+    else if (nb_bytes == sizeof(char) && buff[0] == DELETE)
+      delete_action(l, t, (l->pos[1] * l->nb_col) + l->pos[0]);
 		// else
-		// 	ft_putstr(buff);
+		// 	ft_putnbr_fd((int)buff[0], 2);
 		ft_strdel(&buff);
 	}
   return (0);

@@ -26,6 +26,7 @@
 # define ARROW_LEFT "\e[D"
 # define SPACE " "
 # define ENTER "\n"
+# define DELETE 127
 
 # define BACK_BLACK   "\x1b[40m"
 # define BACK_RED     "\x1b[41m"
@@ -103,6 +104,7 @@ void	    handle_signals(int sig);
 void	    ft_set_signals();
 int       get_size_term(t_term *t);
 void      enter_action(t_layout *l, t_term *t);
-
+t_param   *realloc_params(int nb_args, int ignored_index, t_param *old);
+int       delete_action(t_layout *l, t_term *t, int index);
 
 #endif

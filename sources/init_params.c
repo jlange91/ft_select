@@ -1,5 +1,30 @@
 #include "ft_select.h"
 
+t_param   *realloc_params(int nb_args, int ignored_index, t_param *old)
+{
+    t_param *new;
+    int     i;
+
+    i = 0;
+    if (!(new = (t_param*)malloc(sizeof(t_param) * (nb_args - 1))))
+    {
+      ft_putendl_fd("ft_select: init_params: malloc_error", STDERR_FILENO);
+      exit(1);
+    }
+    while (i < nb_args - 1)
+    {
+      new[i].str = (i < ignored_index) ? old[i].str : old[i + 1].str;
+      new[i].len = ft_strlen(new[i].str);
+      new[i].l_x = 0;
+      new[i].l_y = 0;
+      new[i].t_x = 0;
+      new[i].t_y = 0;
+      new[i].selected = (i < ignored_index) ? old[i].selected : old[i + 1].selected;
+      i++;
+    }
+    return (new);
+}
+
 int   init_params(int ac, char **av, t_layout *l)
 {
   int     i;
