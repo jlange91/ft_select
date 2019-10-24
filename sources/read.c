@@ -29,6 +29,8 @@ int   read_stdin(t_term *t, t_layout *l)
       arrow_right_action(l);
     else if (!ft_strcmp(SPACE, buff))
       space_action(l);
+    else if (!ft_strcmp(ENTER, buff))
+      enter_action(l, t);
 
 		// else
 		// 	ft_putstr(buff);

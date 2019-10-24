@@ -27,7 +27,8 @@ int	main(int ac, char **av)
 
 	if (ac <= 1)
 		return (0);
-	if (init_term(&t) || init_layout(ac, av, &l))
+
+	if (init_term(&t) || init_layout(ac, &l) || init_params(ac, av, &l))
 		exit(1);
 	calc_layout(&t, &l);
 	singleton_term(&t);

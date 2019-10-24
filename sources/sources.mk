@@ -11,5 +11,6 @@ C_FILES= \
 	actions.c \
 	tools.c \
 	signals.c
+	# delete.c
 
 C_FILES += $(foreach SUB_DIR,$(SUB_DIRS),$(addprefix $(SUB_DIR)/,$(C_FILES_$(SUB_DIR))))

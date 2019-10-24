@@ -35,16 +35,13 @@ void	handle_signals(int sig)
 	}
 	else if (sig == SIGCONT)
 	{
-		ft_putendl_fd("a", 2);
-		// print_args(singleton_layout(NULL));
-		init_term(t);
-		singleton_term(t);
-		ft_set_signals();
-		read_stdin(t, l);
+		if (init_term(t))
+			exit(1);
+		signal(SIGTSTP, handle_signals);
+		signal(SIGCONT, handle_signals);
+		print_args(l);
 		return ;
 	}
 	else
 		exit(1);
-	// ft_putnbr(sig);
-	// ft_putchar('\n');
 }
