@@ -29,7 +29,7 @@ static int	init_attr(t_term *t)
 	return (0);
 }
 
-static int get_size_term(t_term *t)
+int get_size_term(t_term *t)
 {
 	struct winsize w;
 
@@ -71,6 +71,7 @@ int init_term(t_term *t)
 int	term_off(t_term *t)
 {
 	if (t)
+		// ;
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
 	tputs(tgetstr("te", NULL), 1, (int (*)(int))ft_putchar);
 	tputs(tgetstr("ve", NULL), 1, (int (*)(int))ft_putchar);

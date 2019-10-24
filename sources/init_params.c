@@ -1,23 +1,25 @@
 #include "ft_select.h"
 
-t_param   *init_params(int ac, char **av)
+int   init_params(int ac, char **av, t_layout *l)
 {
-  t_param *ret;
   int     i;
 
   i = 0;
-  if (!(ret = (t_param*)malloc(sizeof(t_param) * (ac - 1))))
-    return (ret);
+  if (!(l->params = (t_param*)malloc(sizeof(t_param) * (ac - 1))))
+  {
+    ft_putendl_fd("ft_select: init_params: malloc_error", STDERR_FILENO);
+    return (1);
+  }
   while (i < ac - 1)
   {
-    ret[i].str = av[i + 1];
-    ret[i].len = ft_strlen(av[i + 1]);
-    ret[i].l_x = 0;
-    ret[i].l_y = 0;
-    ret[i].t_x = 0;
-    ret[i].t_y = 0;
-    ret[i].selected = 0;
+    l->params[i].str = av[i + 1];
+    l->params[i].len = ft_strlen(av[i + 1]);
+    l->params[i].l_x = 0;
+    l->params[i].l_y = 0;
+    l->params[i].t_x = 0;
+    l->params[i].t_y = 0;
+    l->params[i].selected = 0;
     i++;
   }
-  return (ret);
+  return (0);
 }

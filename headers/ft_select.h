@@ -61,8 +61,8 @@ int       init_term(t_term *t);
 t_term    *singleton_term(t_term *t);
 t_layout  *singleton_layout(t_layout *l);
 int       read_stdin(t_term *t, t_layout *l);
-t_param   *init_params(int ac, char **av);
-int		    init_layout(int ac, char **av, t_layout *l);
+int       init_params(int ac, char **av, t_layout *l);
+int		    init_layout(int ac, t_layout *l);
 void      calc_layout(t_term *t, t_layout *l);
 void	    print_args(t_layout *lay);
 void      arrow_up_action(t_layout *l);
@@ -75,5 +75,6 @@ void	    ft_handle_signals(int sig);
 int	      term_off(t_term *t);
 void	    handle_signals(int sig);
 void	    ft_set_signals();
+int       get_size_term(t_term *t);
 
 #endif

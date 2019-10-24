@@ -25,19 +25,20 @@ void	handle_signals(int sig)
 		signal(SIGTSTP, SIG_DFL);
 		ioctl(0, TIOCSTI, (char[2]){t->old.c_cc[VSUSP], 0});
 	}
+	else if (sig == SIGWINCH)
+	{
+		get_size_term(t);
+		calc_layout(t, l);
+		print_args(l);
+	}
 	else if (sig == SIGCONT)
 	{
-		// print_args(singleton_layout(NULL));
-		// signal(SIGTSTP, handle_signals);
-		// ft_set_signals();
+		init_term(t);
 		signal(SIGTSTP, handle_signals);
 		signal(SIGCONT, handle_signals);
-		init_term(t);
-		read_stdin(t, l);
+		print_args(l);
 		return ;
 	}
 	else
 		exit(1);
-	// ft_putnbr(sig);
-	// ft_putchar('\n');
 }
