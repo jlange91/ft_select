@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 15:15:14 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/24 17:47:01 by thdelmas         ###   ########.fr       */
+/*   Created: 2019/10/25 15:33:42 by jlange            #+#    #+#             */
+/*   Updated: 2019/10/25 15:33:47 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	print_args(t_layout *l, int t_height)
 		if ((l->params[i].t_y - l->y_offset) >= t_height)
 			break ;
 		tputs(tgoto(tgetstr("cm", NULL), l->params[i].t_x,
-		 l->params[i].t_y - l->y_offset),
-		 STDIN_FILENO, ft_poutchar);
+					l->params[i].t_y - l->y_offset),
+				STDIN_FILENO, ft_poutchar);
 		if (l->params[i].selected)
 			tputs(tgetstr("mr", NULL), STDIN_FILENO, ft_poutchar);
 		if (l->params[i].l_x == l->pos[0] && l->params[i].l_y == l->pos[1])

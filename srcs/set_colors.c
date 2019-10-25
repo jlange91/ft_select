@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 17:47:17 by thdelmas          #+#    #+#             */
-/*   Updated: 2019/10/24 18:08:11 by thdelmas         ###   ########.fr       */
+/*   Created: 2019/10/25 15:34:04 by jlange            #+#    #+#             */
+/*   Updated: 2019/10/25 15:34:08 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,43 @@
 
 static inline void  set_text_color2(char c)
 {
-    if (c == 'A')
-        ft_putstr_fd(D_GREY, STDIN_FILENO);
-    else if (c == 'B')
-        ft_putstr_fd(B_RED, STDIN_FILENO);
-    else if (c == 'C')
-        ft_putstr_fd(B_GREEN, STDIN_FILENO);
-    else if (c == 'D')
-        ft_putstr_fd(YELLOW, STDIN_FILENO);
-    else if (c == 'E')
-        ft_putstr_fd(B_BLUE, STDIN_FILENO);
-    else if (c == 'F')
-        ft_putstr_fd(B_MAGENTA, STDIN_FILENO);
-    else if (c == 'G')
-        ft_putstr_fd(B_CYAN, STDIN_FILENO);
-    else if (c == 'H')
-        ft_putstr_fd(WHITE, STDIN_FILENO);
+	if (c == 'A')
+		ft_putstr_fd(D_GREY, STDIN_FILENO);
+	else if (c == 'B')
+		ft_putstr_fd(B_RED, STDIN_FILENO);
+	else if (c == 'C')
+		ft_putstr_fd(B_GREEN, STDIN_FILENO);
+	else if (c == 'D')
+		ft_putstr_fd(YELLOW, STDIN_FILENO);
+	else if (c == 'E')
+		ft_putstr_fd(B_BLUE, STDIN_FILENO);
+	else if (c == 'F')
+		ft_putstr_fd(B_MAGENTA, STDIN_FILENO);
+	else if (c == 'G')
+		ft_putstr_fd(B_CYAN, STDIN_FILENO);
+	else if (c == 'H')
+		ft_putstr_fd(WHITE, STDIN_FILENO);
 }
 static inline void  set_text_color(char c)
 {
-    if (c == 'a')
-        ft_putstr_fd(BLACK, STDIN_FILENO);
-    else if (c == 'b')
-        ft_putstr_fd(RED, STDIN_FILENO);
-    else if (c == 'c')
-        ft_putstr_fd(GREEN, STDIN_FILENO);
-    else if (c == 'd')
-        ft_putstr_fd(BROWN, STDIN_FILENO);
-    else if (c == 'e')
-        ft_putstr_fd(BLUE, STDIN_FILENO);
-    else if (c == 'f')
-        ft_putstr_fd(MAGENTA, STDIN_FILENO);
-    else if (c == 'g')
-        ft_putstr_fd(CYAN, STDIN_FILENO);
-    else if (c == 'h')
-        ft_putstr_fd(GREY, STDIN_FILENO);
-    else
-        set_text_color2(c);
+	if (c == 'a')
+		ft_putstr_fd(BLACK, STDIN_FILENO);
+	else if (c == 'b')
+		ft_putstr_fd(RED, STDIN_FILENO);
+	else if (c == 'c')
+		ft_putstr_fd(GREEN, STDIN_FILENO);
+	else if (c == 'd')
+		ft_putstr_fd(BROWN, STDIN_FILENO);
+	else if (c == 'e')
+		ft_putstr_fd(BLUE, STDIN_FILENO);
+	else if (c == 'f')
+		ft_putstr_fd(MAGENTA, STDIN_FILENO);
+	else if (c == 'g')
+		ft_putstr_fd(CYAN, STDIN_FILENO);
+	else if (c == 'h')
+		ft_putstr_fd(GREY, STDIN_FILENO);
+	else
+		set_text_color2(c);
 }
 
 void	set_colors(char *colors, mode_t type)

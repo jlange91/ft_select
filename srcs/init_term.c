@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_term.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/25 15:33:23 by jlange            #+#    #+#             */
+/*   Updated: 2019/10/25 15:33:26 by jlange           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_select.h"
 
 static inline int init_getent(t_term *t)
@@ -33,14 +45,14 @@ int get_size_term(t_term *t)
 {
 	struct winsize w;
 
-  if (ioctl(STDIN_FILENO, TIOCGWINSZ, &w))
-  {
-    ft_putstr_fd("Could not get size of term.\n", 2);
-    return (1);
-  }
-  t->length = w.ws_col;
-  t->height = w.ws_row;
-  return (0);
+	if (ioctl(STDIN_FILENO, TIOCGWINSZ, &w))
+	{
+		ft_putstr_fd("Could not get size of term.\n", 2);
+		return (1);
+	}
+	t->length = w.ws_col;
+	t->height = w.ws_row;
+	return (0);
 }
 
 int init_term(t_term *t)
