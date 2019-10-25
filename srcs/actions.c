@@ -6,15 +6,17 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:31:55 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/25 15:32:35 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/25 17:35:29 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void space_action(t_layout *l, int t_height)
+void	space_action(t_layout *l, int t_height)
 {
-	int test = (l->pos[1] * l->nb_col) + l->pos[0];
+	int test;
+
+	test = (l->pos[1] * l->nb_col) + l->pos[0];
 	l->params[test].selected = !l->params[test].selected;
 	test = (test < l->nb_args - 1) ? (test + 1) : 0;
 	l->pos[0] = test % l->nb_col;
@@ -22,12 +24,13 @@ void space_action(t_layout *l, int t_height)
 	print_args(l, t_height);
 }
 
-void enter_action(t_layout *l, t_term *t)
+void	enter_action(t_layout *l, t_term *t)
 {
 	int i;
 
 	i = 0;
 	term_off(t);
+	singleton_term(NULL, 1);
 	while (i < l->nb_args)
 	{
 		if (l->params[i].selected)
@@ -38,15 +41,14 @@ void enter_action(t_layout *l, t_term *t)
 			else
 				ft_putstr(" ");
 		}
-		else
-			if (i == l->nb_args - 1)
-				ft_putstr("\n");
+		else if (i == l->nb_args - 1)
+			ft_putstr("\n");
 		++i;
 	}
 	exit(0);
 }
 
-int   delete_action(t_layout *l, t_term *t, int index)
+int		delete_action(t_layout *l, t_term *t, int index)
 {
 	t_param *new;
 

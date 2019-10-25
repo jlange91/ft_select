@@ -81,7 +81,7 @@ typedef struct    s_layout
 	char		*colors;
 }		t_layout;
 
-t_term    *singleton_term(t_term *t);
+t_term    *singleton_term(t_term *t, int set);
 t_layout  *singleton_layout(t_layout *l);
 
 int       init_term(t_term *t);

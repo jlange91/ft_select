@@ -6,13 +6,13 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:33:23 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/25 15:33:26 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/25 17:41:45 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static inline int init_getent(t_term *t)
+static inline int		init_getent(t_term *t)
 {
 	int ret;
 
@@ -25,14 +25,14 @@ static inline int init_getent(t_term *t)
 		return (2);
 	else if (ret == 0)
 		return (3);
-	return 0;
+	return (0);
 }
 
-static inline int	init_attr(t_term *t)
+static inline int		init_attr(t_term *t)
 {
 	if (tcgetattr(STDIN_FILENO, &(t->old)))
 		return (4);
-	t->new = t->old; // cpy
+	t->new = t->old;
 	t->new.c_lflag &= ~(ECHO | ICANON);
 	t->new.c_cc[VMIN] = 1;
 	t->new.c_cc[VTIME] = 0;
@@ -41,7 +41,7 @@ static inline int	init_attr(t_term *t)
 	return (0);
 }
 
-int get_size_term(t_term *t)
+int						get_size_term(t_term *t)
 {
 	struct winsize w;
 
@@ -55,14 +55,15 @@ int get_size_term(t_term *t)
 	return (0);
 }
 
-int init_term(t_term *t)
+int						init_term(t_term *t)
 {
-	int ret;
-	char *(errors[5]);
+	int		ret;
+	char	*(errors[5]);
 
 	errors[0] = "TERM must be set (see 'env').\n";
 	errors[1] = "Could not access to the termcap database.\n";
-	errors[2] = "Terminal type is not defined in termcap database (or have too few informations).\n";
+	errors[2] = "Terminal type is not defined in termcap database \
+(or have too few informations).\n";
 	ret = init_getent(t);
 	if (ret)
 	{
@@ -81,7 +82,7 @@ int init_term(t_term *t)
 	return (ret);
 }
 
-int	term_off(t_term *t)
+int						term_off(t_term *t)
 {
 	if (t)
 	{

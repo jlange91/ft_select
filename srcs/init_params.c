@@ -6,16 +6,16 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:33:16 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/25 15:33:19 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/25 17:39:39 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_param   *realloc_params(int nb_args, int ignored_index, t_param *old)
+t_param		*realloc_params(int nb_args, int ignored_index, t_param *old)
 {
-	t_param *new;
-	int     i;
+	t_param	*new;
+	int		i;
 
 	i = 0;
 	if (!(new = (t_param*)malloc(sizeof(t_param) * (nb_args - 1))))
@@ -31,16 +31,17 @@ t_param   *realloc_params(int nb_args, int ignored_index, t_param *old)
 		new[i].l_y = 0;
 		new[i].t_x = 0;
 		new[i].t_y = 0;
-		new[i].selected = (i < ignored_index) ? old[i].selected : old[i + 1].selected;
+		new[i].selected = (i < ignored_index) ?
+			old[i].selected : old[i + 1].selected;
 		new[i].type = (i < ignored_index) ? old[i].type : old[i + 1].type;
 		i++;
 	}
 	return (new);
 }
 
-int   init_params(int ac, char **av, t_layout *l)
+int			init_params(int ac, char **av, t_layout *l)
 {
-	int     i;
+	int i;
 
 	i = 0;
 	if (!(l->params = (t_param*)malloc(sizeof(t_param) * (ac - 1))))

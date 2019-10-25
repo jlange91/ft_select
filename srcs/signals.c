@@ -29,7 +29,7 @@ void	handle_signals(int sig)
 	t_term *t;
 	t_layout *l;
 
-	t = singleton_term(NULL);
+	t = singleton_term(NULL, 0);
 	l = singleton_layout(NULL);
 	if (sig == SIGTSTP)
 	{
