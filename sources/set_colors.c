@@ -15,40 +15,40 @@
 static inline void            set_text_color2(char c)
 {
     if (c == 'A')
-        ft_putstr(D_GREY);
+        ft_putstr_fd(D_GREY, STDIN_FILENO);
     else if (c == 'B')
-        ft_putstr(B_RED);
+        ft_putstr_fd(B_RED, STDIN_FILENO);
     else if (c == 'C')
-        ft_putstr(B_GREEN);
+        ft_putstr_fd(B_GREEN, STDIN_FILENO);
     else if (c == 'D')
-        ft_putstr(YELLOW);
+        ft_putstr_fd(YELLOW, STDIN_FILENO);
     else if (c == 'E')
-        ft_putstr(B_BLUE);
+        ft_putstr_fd(B_BLUE, STDIN_FILENO);
     else if (c == 'F')
-        ft_putstr(B_MAGENTA);
+        ft_putstr_fd(B_MAGENTA, STDIN_FILENO);
     else if (c == 'G')
-        ft_putstr(B_CYAN);
+        ft_putstr_fd(B_CYAN, STDIN_FILENO);
     else if (c == 'H')
-        ft_putstr(WHITE);
+        ft_putstr_fd(WHITE, STDIN_FILENO);
 }
 void                        set_text_color(char c)
 {
     if (c == 'a')
-        ft_putstr(BLACK);
+        ft_putstr_fd(BLACK, STDIN_FILENO);
     else if (c == 'b')
-        ft_putstr(RED);
+        ft_putstr_fd(RED, STDIN_FILENO);
     else if (c == 'c')
-        ft_putstr(GREEN);
+        ft_putstr_fd(GREEN, STDIN_FILENO);
     else if (c == 'd')
-        ft_putstr(BROWN);
+        ft_putstr_fd(BROWN, STDIN_FILENO);
     else if (c == 'e')
-        ft_putstr(BLUE);
+        ft_putstr_fd(BLUE, STDIN_FILENO);
     else if (c == 'f')
-        ft_putstr(MAGENTA);
+        ft_putstr_fd(MAGENTA, STDIN_FILENO);
     else if (c == 'g')
-        ft_putstr(CYAN);
+        ft_putstr_fd(CYAN, STDIN_FILENO);
     else if (c == 'h')
-        ft_putstr(GREY);
+        ft_putstr_fd(GREY, STDIN_FILENO);
     else
         set_text_color2(c);
 }

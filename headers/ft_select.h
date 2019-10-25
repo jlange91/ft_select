@@ -105,5 +105,6 @@ t_param   *realloc_params(int nb_args, int ignored_index, t_param *old);
 int       delete_action(t_layout *l, t_term *t, int index);
 mode_t		get_type_file(char *str);
 void			set_colors(char *colors, mode_t type);
+int        ft_poutchar(int c);
 
 #endif

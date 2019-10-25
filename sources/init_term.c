@@ -33,7 +33,7 @@ int get_size_term(t_term *t)
 {
 	struct winsize w;
 
-  if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w))
+  if (ioctl(STDIN_FILENO, TIOCGWINSZ, &w))
   {
     ft_putstr_fd("Could not get size of term.\n", 2);
     return (1);
@@ -64,8 +64,8 @@ int init_term(t_term *t)
 		ft_putstr_fd(errors[ret - 1], 2);
 	if (get_size_term(t))
 		exit(1);
-	tputs(tgetstr("ti", NULL), 1, (int (*)(int))ft_putchar);
-	tputs(tgetstr("vi", NULL), 1, (int (*)(int))ft_putchar);
+	tputs(tgetstr("ti", NULL), 1, ft_poutchar);
+	tputs(tgetstr("vi", NULL), 1, ft_poutchar);
 	return (ret);
 }
 
@@ -73,8 +73,8 @@ int	term_off(t_term *t)
 {
 	if (t)
 	{
-		tputs(tgetstr("te", NULL), 1, (int (*)(int))ft_putchar);
-		tputs(tgetstr("ve", NULL), 1, (int (*)(int))ft_putchar);
+		tputs(tgetstr("te", NULL), 1, ft_poutchar);
+		tputs(tgetstr("ve", NULL), 1, ft_poutchar);
 		tcsetattr(STDIN_FILENO, TCSADRAIN, &(t->old));
 	}
 	return (0);

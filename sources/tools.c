@@ -14,3 +14,8 @@ mode_t	get_type_file(char *str)
 
 	return (lstat(str, &s)) ? 0 : s.st_mode;
 }
+
+int        ft_poutchar(int c)
+{
+    return (write(STDERR_FILENO, &c, 1));
+}
