@@ -41,5 +41,5 @@ mode_t	get_type_file(char *str)
 
 int        ft_poutchar(int c)
 {
-    return (write(STDERR_FILENO, &c, 1));
+    return (write(STDIN_FILENO, &c, 1));
 }
