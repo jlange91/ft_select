@@ -1,5 +1,13 @@
 #include "ft_select.h"
 
+void set_y_offset(t_layout *l, int t_height)
+{
+  while ((l->pos[1] - l->y_offset) < 0)
+    l->y_offset -= 1;
+  while ((l->pos[1] - l->y_offset) >= t_height)
+    l->y_offset += 1;
+}
+
 int layout_case_exist(t_layout *l, int x, int y)
 {
   int pos;

@@ -77,6 +77,7 @@ typedef struct    s_layout
 	int     col_len;
 	t_param *params;
 	int     pos[2];
+	int			y_offset;
 	char		*colors;
 }		t_layout;
 
@@ -88,12 +89,12 @@ int       read_stdin(t_term *t, t_layout *l);
 int       init_params(int ac, char **av, t_layout *l);
 int		    init_layout(int ac, t_layout *l);
 void      calc_layout(t_term *t, t_layout *l);
-void	    print_args(t_layout *lay);
-void	  arrow_up_action(t_layout *l);
-void	  arrow_down_action(t_layout *l);
-void	  arrow_left_action(t_layout *l);
-void	  arrow_right_action(t_layout *l);
-void	  space_action(t_layout *l);
+void	    print_args(t_layout *lay, int t_height);
+void	  arrow_up_action(t_layout *l, t_term *t);
+void	  arrow_down_action(t_layout *l, t_term *t);
+void	  arrow_left_action(t_layout *l, int t_height);
+void	  arrow_right_action(t_layout *l, int t_height);
+void	  space_action(t_layout *l, int t_height);
 int       layout_case_exist(t_layout *l, int x, int y);
 void	    ft_handle_signals(int sig);
 int	      term_off(t_term *t);
@@ -106,5 +107,6 @@ int       delete_action(t_layout *l, t_term *t, int index);
 mode_t		get_type_file(char *str);
 void			set_colors(char *colors, mode_t type);
 int        ft_poutchar(int c);
+void set_y_offset(t_layout *l, int t_height);
 
 #endif

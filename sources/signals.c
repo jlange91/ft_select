@@ -31,7 +31,7 @@ void	handle_signals(int sig)
 	{
 		get_size_term(t);
 		calc_layout(t, l);
-		print_args(l);
+		print_args(l, t->height);
 	}
 	else if (sig == SIGCONT)
 	{
@@ -39,7 +39,7 @@ void	handle_signals(int sig)
 			exit(1);
 		signal(SIGTSTP, handle_signals);
 		signal(SIGCONT, handle_signals);
-		print_args(l);
+		print_args(l, t->height);
 		return ;
 	}
 	else

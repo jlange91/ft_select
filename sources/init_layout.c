@@ -21,6 +21,7 @@ int		init_layout(int ac, t_layout *l)
 	l->col_len = 0;
 	l->pos[0] = 0;
 	l->pos[1] = 0;
+	l->y_offset = 0;
 	l->nb_args = ac - 1;
 	l->params = NULL;
 	l->colors = getenv("LSCOLORS");

@@ -12,21 +12,24 @@
 
 #include "ft_select.h"
 
-void	print_args(t_layout *lay)
+void	print_args(t_layout *lay, int t_height)
 {
 	int		i;
 	char	*tc;
 	char	*move;
 	char	*tcm;
 
-	i = 0;
+	set_y_offset(lay, t_height);
+	i = lay->y_offset * lay->nb_col;
 	tc = tgetstr("cl", NULL);
 	tputs(tc, 1, ft_poutchar);
 	tcm = tgetstr("cm", NULL);
 	tputs(tc, STDIN_FILENO, ft_poutchar);
 	while (i < lay->nb_args)
 	{
-		move = tgoto(tcm, lay->params[i].t_x, lay->params[i].t_y);
+		if ((lay->params[i].t_y - lay->y_offset) >= t_height)
+			break ;
+		move = tgoto(tcm, lay->params[i].t_x, lay->params[i].t_y - lay->y_offset);
 		tputs(move, STDIN_FILENO, ft_poutchar);
 		if (lay->params[i].selected)
 		{
