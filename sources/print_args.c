@@ -23,17 +23,21 @@ static inline void print_colors(t_layout *l, int i)
 void	print_args(t_layout *l, int t_height)
 {
 	int		i;
-	char	*tcm;
 
+	tputs(tgetstr("cl", NULL), STDIN_FILENO, ft_poutchar);
+	if (l->nb_col == 0)
+	{
+		ft_putstr_fd("Term width is insufficient please resize window.\n", STDIN_FILENO);
+		return ;
+	}
 	set_y_offset(l, t_height);
 	i = l->y_offset * l->nb_col;
-	tcm = tgetstr("cm", NULL);
-	tputs(tgetstr("cl", NULL), STDIN_FILENO, ft_poutchar);
-	while (i < l->nb_args)
+	while (i >= 0 && i < l->nb_args)
 	{
 		if ((l->params[i].t_y - l->y_offset) >= t_height)
 			break ;
-		tputs(tgoto(tcm, l->params[i].t_x, l->params[i].t_y - l->y_offset),
+		tputs(tgoto(tgetstr("cm", NULL), l->params[i].t_x,
+		 l->params[i].t_y - l->y_offset),
 		 STDIN_FILENO, ft_poutchar);
 		if (l->params[i].selected)
 			tputs(tgetstr("mr", NULL), STDIN_FILENO, ft_poutchar);
@@ -42,7 +46,6 @@ void	print_args(t_layout *l, int t_height)
 		print_colors(l, i);
 		tputs(tgetstr("me", NULL), STDIN_FILENO, ft_poutchar);
 		tputs(tgetstr("ue", NULL), STDIN_FILENO, ft_poutchar);
-		//
 		i++;
 	}
 }

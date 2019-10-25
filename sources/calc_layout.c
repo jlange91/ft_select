@@ -14,6 +14,8 @@ static inline void calc_nb_col_raw(t_term *t, t_layout *l) {
       l->nb_col += 1;
     i++;
   }
+  if (l->nb_col == 0)
+    return ;
   l->nb_raw = (l->nb_args / l->nb_col);
   l->nb_raw += (l->nb_args % l->nb_col) ? 1 : 0;
 }
@@ -34,6 +36,8 @@ static inline void calc_layout_x_y(t_layout *l) {
   int i;
 
   i = 0;
+  if (l->nb_col == 0)
+    return ;
   while (i < l->nb_args)
   {
     l->params[i].l_x = (i % l->nb_col);
@@ -46,6 +50,8 @@ static inline void calc_term_x_y(t_layout *l) {
   int i;
 
   i = 0;
+  if (l->nb_col == 0)
+    return ;
   while (i < l->nb_args)
   {
     //first calc for size str and second for space between

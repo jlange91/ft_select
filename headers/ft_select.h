@@ -81,33 +81,38 @@ typedef struct    s_layout
 	char		*colors;
 }		t_layout;
 
-int       init_term(t_term *t);
-int get_size_term(t_term *t);
 t_term    *singleton_term(t_term *t);
 t_layout  *singleton_layout(t_layout *l);
-int       read_stdin(t_term *t, t_layout *l);
+
+int       init_term(t_term *t);
 int       init_params(int ac, char **av, t_layout *l);
 int		    init_layout(int ac, t_layout *l);
 void      calc_layout(t_term *t, t_layout *l);
-void	    print_args(t_layout *lay, int t_height);
+t_param   *realloc_params(int nb_args, int ignored_index, t_param *old);
+
 void	  arrow_up_action(t_layout *l, t_term *t);
 void	  arrow_down_action(t_layout *l, t_term *t);
 void	  arrow_left_action(t_layout *l, int t_height);
 void	  arrow_right_action(t_layout *l, int t_height);
 void	  space_action(t_layout *l, int t_height);
+int     delete_action(t_layout *l, t_term *t, int index);
+void    enter_action(t_layout *l, t_term *t);
+
+void	    handle_signals(int sig);
+void	    ft_set_signals();
+
+void	    print_args(t_layout *lay, int t_height);
+int       read_stdin(t_term *t, t_layout *l);
 int       layout_case_exist(t_layout *l, int x, int y);
 void	    ft_handle_signals(int sig);
 int	      term_off(t_term *t);
-void	    handle_signals(int sig);
-void	    ft_set_signals();
 int       get_size_term(t_term *t);
-void      enter_action(t_layout *l, t_term *t);
-t_param   *realloc_params(int nb_args, int ignored_index, t_param *old);
-int       delete_action(t_layout *l, t_term *t, int index);
-mode_t		get_type_file(char *str);
 void			set_colors(char *colors, mode_t type);
-int        ft_poutchar(int c);
-void set_y_offset(t_layout *l, int t_height);
-void resize_window(t_term *t, t_layout *l);
+
+mode_t		get_type_file(char *str);
+void 			set_y_offset(t_layout *l, int t_height);
+void 			resize_window(t_term *t, t_layout *l);
+int       ft_poutchar(int c);
+int 			get_size_term(t_term *t);
 
 #endif
