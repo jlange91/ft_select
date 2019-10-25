@@ -3,111 +3,66 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thdelmas <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jlange <jlange@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/06/05 17:18:13 by thdelmas          #+#    #+#              #
-#    Updated: 2019/10/22 18:08:21 by thdelmas         ###   ########.fr        #
+#    Created: 2016/12/28 12:33:38 by jlange            #+#    #+#              #
+#    Updated: 2019/03/05 02:09:50 by jlange           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := ft_select
-PROJECT := FT_SELECT
-AUTHORS := Thdelmas
 
-RM = /bin/rm
+.PHONY: all, clean, fclean, re
 
-### Directories ###
-SRC_DIR := ./sources
-INC_DIR := ./headers
-OBJ_DIR := ./.obj
+SRC_PATH = srcs
 
-### SUB FILES ###
-SUB_DIRS := \
+OBJ_PATH = objs
 
+NAME = ft_select
 
-### INCLUDE SRC MAKEFILE ###
-include $(SRC_DIR)/sources.mk
+CC = cc
 
-### INCLUDE INC MAKEFILE ###
-include $(INC_DIR)/headers.mk
+HEADER = include/ft_select.h
 
+CFLAGS = -Wall -Wextra -Werror
 
-### ALL SUB DIRS ###
-SRC_SUB_DIRS = $(addprefix $(SRC_DIR)/,$(SUB_DIRS))
-OBJ_SUB_DIRS = $(addprefix $(OBJ_DIR)/,$(SUB_DIRS))
-INC_SUB_DIRS = $(addprefix $(INC_DIR)/,$(SUB_DIRS))
+CPPFLAGS = -Iinclude
 
+SRC_NAME =  	main.c \
+							init_term.c \
+							singleton.c \
+							read.c \
+							init_layout.c \
+							init_params.c \
+							calc_layout.c \
+							print_args.c \
+							arrow_actions.c \
+							actions.c \
+							tools.c \
+							signals.c \
+							set_colors.c
 
-### MAIN AND SUB FILES ###
-O_FILES = $(C_FILES:.c=.o)
+OBJ = $(SRC_NAME:.c=.o)
 
-
-### Full Paths ###
-SRC = $(addprefix $(SRC_DIR)/,$(C_FILES))
-OBJ = $(addprefix $(OBJ_DIR)/,$(O_FILES))
-INC = $(addprefix $(INC_DIR)/,$(H_FILES))
-
-
-### Lib ###
-FT = ft
-FT_DIR = ./lib$(FT)
-FT_INC_DIR = $(FT_DIR)/includes
-FT_LNK = -L$(FT_DIR) -l$(FT)
-
-###  CC && FLAGS ###
-CC = clang
-DEBUG_FLAGS = -g3
-CFLAGS = \
-		 $(addprefix -I ,$(INC_DIR) $(INC_SUB_DIRS) $(FT_INC_DIR)) \
-		 $(DEBUG_FLAGS) \
-		 -Wall -Wextra -Werror
-
-LFLAGS = -ltermcap \
-		 -lncurses \
-		 $(FT_LNK) \
-
-
-
-.PHONY: all clean fclean re
+OBJS = $(addprefix objs/, $(OBJ))
 
 all: $(NAME)
 
-### Lib compil ###
-$(FT):
-	@make -C $(FT_DIR)
+$(NAME): objs/ $(OBJS)
+	@$(CC) $(OBJS) libft/libft.a -ltermcap -lncurses -o $(NAME)
 
-$(SHUTIL): $(FT)
-	@make -C $(SHUTIL_DIR)
+objs/:
+	@make -C libft
+	@mkdir $(OBJ_PATH) 2> /dev/null
 
-### Mkdir obj ###
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR) $(OBJ_SUB_DIRS)
+objs/%.o: srcs/%.c $(HEADER)
+	@$(CC) -Ilibft/includes -o $@ $(CPPFLAGS) -c $< $(CFLAGS)
 
-### Compilation ###
-.ONESHELL:
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC) Makefile
-	$(CC) $(CFLAGS) -o $@ -c $<
+clean:
+	@make clean -C libft
+	@rm -rf $(OBJ_PATH)
 
-### Link ###
-$(NAME): $(FT) $(OBJ_DIR) $(OBJ) $(INC) Makefile $(FT_DIR)/libft.a
-	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
-
-### Clean ###
-$(FT)_clean:
-	@make -C $(FT_DIR) clean
-
-clean: $(FT)_clean $(SHUTIL)_clean
-	$(RM) -rf $(OBJ_DIR)
-
-$(FT)_fclean:
-	@make -C $(FT_DIR) fclean
-
-fclean: $(FT)_fclean
-	$(RM) -rf $(OBJ_DIR)
-	$(RM) -rf $(NAME).dSYM
-	$(RM) -rf $(NAME)
+fclean:
+	@make fclean -C libft
+	@rm -rf $(NAME) $(OBJ_PATH) $(NAME)
 
 re: fclean all
-
-run: $(NAME)
-	./$(NAME)
