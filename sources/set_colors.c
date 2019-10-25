@@ -12,7 +12,7 @@
 
 #include "ft_select.h"
 
-static inline void            set_text_color2(char c)
+static inline void  set_text_color2(char c)
 {
     if (c == 'A')
         ft_putstr_fd(D_GREY, STDIN_FILENO);
@@ -31,7 +31,7 @@ static inline void            set_text_color2(char c)
     else if (c == 'H')
         ft_putstr_fd(WHITE, STDIN_FILENO);
 }
-void                        set_text_color(char c)
+static inline void  set_text_color(char c)
 {
     if (c == 'a')
         ft_putstr_fd(BLACK, STDIN_FILENO);

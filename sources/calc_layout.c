@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-static void calc_nb_col_raw(t_term *t, t_layout *l) {
+static inline void calc_nb_col_raw(t_term *t, t_layout *l) {
   int i;
 
   i = 0;
@@ -18,7 +18,7 @@ static void calc_nb_col_raw(t_term *t, t_layout *l) {
   l->nb_raw += (l->nb_args % l->nb_col) ? 1 : 0;
 }
 
-static void get_col_len(t_layout *l) {
+static inline void get_col_len(t_layout *l) {
 	int i;
 
 	i = 0;
@@ -30,7 +30,7 @@ static void get_col_len(t_layout *l) {
 	}
 }
 
-static void calc_layout_x_y(t_layout *l) {
+static inline void calc_layout_x_y(t_layout *l) {
   int i;
 
   i = 0;
@@ -42,7 +42,7 @@ static void calc_layout_x_y(t_layout *l) {
   }
 }
 
-static void calc_term_x_y(t_layout *l) {
+static inline void calc_term_x_y(t_layout *l) {
   int i;
 
   i = 0;

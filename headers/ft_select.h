@@ -108,5 +108,6 @@ mode_t		get_type_file(char *str);
 void			set_colors(char *colors, mode_t type);
 int        ft_poutchar(int c);
 void set_y_offset(t_layout *l, int t_height);
+void resize_window(t_term *t, t_layout *l);
 
 #endif

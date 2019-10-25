@@ -1,6 +1,6 @@
 #include "ft_select.h"
 
-static int init_getent(t_term *t)
+static inline int init_getent(t_term *t)
 {
 	int ret;
 
@@ -16,7 +16,7 @@ static int init_getent(t_term *t)
 	return 0;
 }
 
-static int	init_attr(t_term *t)
+static inline int	init_attr(t_term *t)
 {
 	if (tcgetattr(STDIN_FILENO, &(t->old)))
 		return (4);
