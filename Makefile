@@ -6,7 +6,7 @@
 #    By: jlange <jlange@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/28 12:33:38 by jlange            #+#    #+#              #
-#    Updated: 2019/03/05 02:09:50 by jlange           ###   ########.fr        #
+#    Updated: 2019/10/28 10:17:23 by jlange           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,19 +27,20 @@ CFLAGS = -Wall -Wextra -Werror
 
 CPPFLAGS = -Iinclude
 
-SRC_NAME =  	main.c \
-							init_term.c \
-							singleton.c \
-							read.c \
-							init_layout.c \
-							init_params.c \
-							calc_layout.c \
-							print_args.c \
-							arrow_actions.c \
-							actions.c \
-							tools.c \
-							signals.c \
-							set_colors.c
+SRC_NAME =  main.c \
+			init_term.c \
+			singleton.c \
+			read.c \
+			init_layout.c \
+			init_params.c \
+			calc_layout.c \
+			print_args.c \
+			arrow_actions.c \
+			actions.c \
+			tools.c \
+			signals.c \
+			set_colors.c \
+			exit.c
 
 OBJ = $(SRC_NAME:.c=.o)
 

@@ -45,7 +45,7 @@ void	enter_action(t_layout *l, t_term *t)
 			ft_putstr("\n");
 		++i;
 	}
-	exit(0);
+	ft_exit(0);
 }
 
 int		delete_action(t_layout *l, t_term *t, int index)

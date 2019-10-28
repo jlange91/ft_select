@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:34:12 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/25 15:34:15 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/28 10:33:28 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_set_signals()
 
 void	handle_signals(int sig)
 {
-	t_term *t;
-	t_layout *l;
+	t_term		*t;
+	t_layout	*l;
 
 	t = singleton_term(NULL, 0);
 	l = singleton_layout(NULL);
@@ -42,12 +42,13 @@ void	handle_signals(int sig)
 	else if (sig == SIGCONT)
 	{
 		if (init_term(t))
-			exit(1);
+			ft_exit(1);
+		calc_layout(t, l);
 		signal(SIGTSTP, handle_signals);
 		signal(SIGCONT, handle_signals);
 		print_args(l, t->height);
 		return ;
 	}
 	else
-		exit(0);
+		ft_exit(0);
 }

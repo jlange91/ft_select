@@ -115,4 +115,6 @@ void 			resize_window(t_term *t, t_layout *l);
 int       ft_poutchar(int c);
 int 			get_size_term(t_term *t);
 
+void 			ft_exit(int ret);
+
 #endif

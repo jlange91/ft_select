@@ -6,13 +6,13 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:34:29 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/25 15:34:31 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/28 10:34:58 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void resize_window(t_term *t, t_layout *l)
+void	resize_window(t_term *t, t_layout *l)
 {
 	int index;
 
@@ -28,7 +28,7 @@ void resize_window(t_term *t, t_layout *l)
 	print_args(l, t->height);
 }
 
-void set_y_offset(t_layout *l, int t_height)
+void	set_y_offset(t_layout *l, int t_height)
 {
 	while ((l->pos[1] - l->y_offset) < 0)
 		l->y_offset -= 1;
@@ -36,22 +36,22 @@ void set_y_offset(t_layout *l, int t_height)
 		l->y_offset += 1;
 }
 
-int layout_case_exist(t_layout *l, int x, int y)
+int		layout_case_exist(t_layout *l, int x, int y)
 {
 	int pos;
 
 	pos = (y * l->nb_col) + x;
-	return (pos < l->nb_args) ? 1 : 0;
+	return (pos < l->nb_args) ? (1) : (0);
 }
 
 mode_t	get_type_file(char *str)
 {
 	struct stat s;
 
-	return (lstat(str, &s)) ? 0 : s.st_mode;
+	return (lstat(str, &s)) ? (0) : (s.st_mode);
 }
 
-int        ft_poutchar(int c)
+int		ft_poutchar(int c)
 {
 	return (write(STDIN_FILENO, &c, 1));
 }

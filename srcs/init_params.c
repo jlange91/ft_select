@@ -21,7 +21,7 @@ t_param		*realloc_params(int nb_args, int ignored_index, t_param *old)
 	if (!(new = (t_param*)malloc(sizeof(t_param) * (nb_args - 1))))
 	{
 		ft_putendl_fd("ft_select: init_params: malloc_error", STDERR_FILENO);
-		exit(1);
+		ft_exit(1);
 	}
 	while (i < nb_args - 1)
 	{

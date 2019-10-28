@@ -76,7 +76,7 @@ int						init_term(t_term *t)
 	if (ret)
 		ft_putstr_fd(errors[ret - 1], 2);
 	if (get_size_term(t))
-		exit(1);
+		ft_exit(1);
 	tputs(tgetstr("ti", NULL), 1, ft_poutchar);
 	tputs(tgetstr("vi", NULL), 1, ft_poutchar);
 	return (ret);
