@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:33:51 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/28 10:36:21 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/28 10:53:26 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static inline void	list_actions(t_term *t, t_layout *l,
 	}
 }
 
-int		read_stdin(t_term *t, t_layout *l)
+int					read_stdin(t_term *t, t_layout *l)
 {
 	int		nb_bytes;
 	char	*buff;

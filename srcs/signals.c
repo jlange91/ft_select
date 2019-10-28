@@ -6,13 +6,13 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:34:12 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/28 10:33:28 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/28 10:53:56 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	ft_set_signals()
+void	ft_set_signals(void)
 {
 	int i;
 

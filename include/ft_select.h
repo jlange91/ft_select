@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:31:33 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/25 15:31:42 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/28 10:59:53 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,73 +48,73 @@
 # define WHITE        "\033[1m\033[37m"
 # define RESET        "\033[0m"
 
-typedef struct  s_term
+typedef struct	s_term
 {
-	char            *type;
-	struct termios  old;
-	struct termios  new;
-	int             length;
-	int             height;
-}               t_term;
+	char			*type;
+	struct termios	old;
+	struct termios	new;
+	int				length;
+	int				height;
+}				t_term;
 
-typedef struct   s_param
+typedef struct	s_param
 {
-	char	*str;
-	int	len;
-	int	t_x;
-	int	t_y;
-	int	l_x;
-	int	l_y;
-	char	selected;
-	mode_t	type;
-}                 t_param;
+	char		*str;
+	int			len;
+	int			t_x;
+	int			t_y;
+	int			l_x;
+	int			l_y;
+	char		selected;
+	mode_t		type;
+}				t_param;
 
-typedef struct    s_layout
+typedef struct	s_layout
 {
-	int     nb_args;
-	int     nb_col;
-	int     nb_raw;
-	int     col_len;
-	t_param *params;
-	int     pos[2];
+	int			nb_args;
+	int			nb_col;
+	int			nb_raw;
+	int			col_len;
+	t_param		*params;
+	int			pos[2];
 	int			y_offset;
 	char		*colors;
-}		t_layout;
+}				t_layout;
 
-t_term    *singleton_term(t_term *t, int set);
-t_layout  *singleton_layout(t_layout *l);
+t_term			*singleton_term(t_term *t, int set);
+t_layout		*singleton_layout(t_layout *l);
 
-int       init_term(t_term *t);
-int       init_params(int ac, char **av, t_layout *l);
-int		    init_layout(int ac, t_layout *l);
-void      calc_layout(t_term *t, t_layout *l);
-t_param   *realloc_params(int nb_args, int ignored_index, t_param *old);
+int				init_term(t_term *t);
+int				init_params(int ac, char **av, t_layout *l);
+int				init_layout(int ac, t_layout *l);
+void			calc_layout(t_term *t, t_layout *l);
+t_param			*realloc_params(int nb_args, int ignored_index, t_param *old);
 
-void	  arrow_up_action(t_layout *l, t_term *t);
-void	  arrow_down_action(t_layout *l, t_term *t);
-void	  arrow_left_action(t_layout *l, int t_height);
-void	  arrow_right_action(t_layout *l, int t_height);
-void	  space_action(t_layout *l, int t_height);
-int     delete_action(t_layout *l, t_term *t, int index);
-void    enter_action(t_layout *l, t_term *t);
+void			arrow_up_action(t_layout *l, t_term *t);
+void			arrow_down_action(t_layout *l, t_term *t);
+void			arrow_left_action(t_layout *l, int t_height);
+void			arrow_right_action(t_layout *l, int t_height);
+void			space_action(t_layout *l, int t_height);
+int				delete_action(t_layout *l, t_term *t, int index);
+void			enter_action(t_layout *l, t_term *t);
 
-void	    handle_signals(int sig);
-void	    ft_set_signals();
+void			handle_signals(int sig);
+void			ft_set_signals();
 
-void	    print_args(t_layout *lay, int t_height);
-int       read_stdin(t_term *t, t_layout *l);
-int       layout_case_exist(t_layout *l, int x, int y);
-void	    ft_handle_signals(int sig);
-int	      term_off(t_term *t);
-int       get_size_term(t_term *t);
+void			print_args(t_layout *lay, int t_height);
+int				read_stdin(t_term *t, t_layout *l);
+int				layout_case_exist(t_layout *l, int x, int y);
+void			ft_handle_signals(int sig);
+int				term_off(t_term *t);
+int				get_size_term(t_term *t);
 void			set_colors(char *colors, mode_t type);
 
-mode_t		get_type_file(char *str);
-void 			set_y_offset(t_layout *l, int t_height);
-void 			resize_window(t_term *t, t_layout *l);
-int       ft_poutchar(int c);
-int 			get_size_term(t_term *t);
+mode_t			get_type_file(char *str);
+void			set_y_offset(t_layout *l, int t_height);
+void			resize_window(t_term *t, t_layout *l);
+int				ft_poutchar(int c);
+int				get_size_term(t_term *t);
 
-void 			ft_exit(int ret);
+void			ft_exit(int ret);
 
 #endif

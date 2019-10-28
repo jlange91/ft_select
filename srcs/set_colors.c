@@ -6,7 +6,7 @@
 /*   By: jlange <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/25 15:34:04 by jlange            #+#    #+#             */
-/*   Updated: 2019/10/28 10:37:18 by jlange           ###   ########.fr       */
+/*   Updated: 2019/10/28 10:54:33 by jlange           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static inline void		set_text_color2(char c)
 	else if (c == 'H')
 		ft_putstr_fd(WHITE, STDIN_FILENO);
 }
+
 static inline void		set_text_color(char c)
 {
 	if (c == 'a')
